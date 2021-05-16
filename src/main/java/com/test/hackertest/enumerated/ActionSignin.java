@@ -1,6 +1,6 @@
 package com.test.hackertest.enumerated;
 
 public enum ActionSignin {
-    SIGNIN_SUCCESS,
-    SIGNIN_FAILURE,
+    SIGNING_SUCCESS,
+    SIGNING_FAILURE,
 }

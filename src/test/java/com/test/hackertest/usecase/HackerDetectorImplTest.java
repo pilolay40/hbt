@@ -17,8 +17,8 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class HackerDetectorImplTest {
-
-
+    @Mock
+    private LogInput logInput;
     @Mock
     private InputLineConverter inputLineConverter;
     @InjectMocks

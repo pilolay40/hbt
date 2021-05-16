@@ -8,12 +8,12 @@ public class DataForTest {
     public static final String SEPARATOR = ",";
     public static final Long EPOCH = 1542110400L;
     public static final String USERNAME = "Will.Smith";
-    public static String INPUT_LINE = IP_ADDRESS + SEPARATOR + EPOCH + SEPARATOR + ActionSignin.SIGNIN_FAILURE.name() + SEPARATOR + USERNAME;
+    public static String INPUT_LINE = IP_ADDRESS + SEPARATOR + EPOCH + SEPARATOR + ActionSignin.SIGNING_FAILURE.name() + SEPARATOR + USERNAME;
 
     public static InputLine buildInputLine() {
         return InputLine.builder()
                 .ip(IP_ADDRESS)
-                .actionSignin(ActionSignin.SIGNIN_FAILURE)
+                .actionSignin(ActionSignin.SIGNING_FAILURE)
                 .username(USERNAME)
                 .epoch(EPOCH)
                 .build();
@@ -21,7 +21,7 @@ public class DataForTest {
 
     public static InputLine buildInputLineWithOutputIP() {
         return InputLine.builder()
-                .actionSignin(ActionSignin.SIGNIN_FAILURE)
+                .actionSignin(ActionSignin.SIGNING_FAILURE)
                 .username(USERNAME)
                 .epoch(EPOCH)
                 .build();
