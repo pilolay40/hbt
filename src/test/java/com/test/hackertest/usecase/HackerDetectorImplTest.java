@@ -4,6 +4,7 @@ import com.test.hackertest.converter.InputLineConverter;
 import com.test.hackertest.model.InputLine;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,6 +31,7 @@ class HackerDetectorImplTest {
         final String log = INPUT_LINE;
         final InputLine inputLine = buildInputLine();
         given(this.inputLineConverter.convert(log)).willReturn(buildInputLine());
+        given(this.logInput.hasTooManyFailedInput(inputLine)).willReturn(true);
 
         //When
         final String ipAddress = this.hackerDetector.parseLine(log);
@@ -48,6 +50,6 @@ class HackerDetectorImplTest {
         final String ipAddress = this.hackerDetector.parseLine(INPUT_LINE);
 
         // Then
-        assertThat(ipAddress, is(inputLine.getIp()));
+        assertThat(StringUtils.isBlank(ipAddress), is(StringUtils.isBlank(inputLine.getIp())));
     }
 }

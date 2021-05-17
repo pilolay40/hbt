@@ -18,7 +18,7 @@ public class HackerPolicy {
 
     public synchronized boolean hasTooManyFailedInput(final List<InputLine> inputLineList, final InputLine inputLine) {
         final Optional<InputLine> inputLineOptional = inputLineList.stream()
-                .filter(line -> line.getEpoch() >= inputLine.getEpoch())
+                .sorted((f1, f2) -> Long.compare(f2.getEpoch(), f1.getEpoch()))
                 .findFirst();
         if (inputLineOptional.isPresent() && this.apply(inputLine, inputLineOptional.get())) {
             return this.isManyIntent(inputLineList);
@@ -32,8 +32,8 @@ public class HackerPolicy {
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(inputLineStore.getEpoch()), TimeZone.getDefault().toZoneId());
         final LocalDateTime localDateTimeInputLine =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(inputLine.getEpoch()), TimeZone.getDefault().toZoneId());
-        return localDateTimeStore.isBefore(localDateTimeInputLine) &&
-                localDateTimeStore.plusMinutes(this.hackerConfig.getMinutePeriodFailure()).isAfter(localDateTimeInputLine);
+
+        return localDateTimeStore.plusMinutes(this.hackerConfig.getMinutePeriodFailure()).isBefore(localDateTimeInputLine);
     }
 
     private synchronized boolean isManyIntent(final List<InputLine> inputLineList) {
