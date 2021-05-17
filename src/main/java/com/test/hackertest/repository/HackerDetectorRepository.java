@@ -5,14 +5,13 @@ import com.test.hackertest.model.InputLine;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Repository
 public class HackerDetectorRepository implements LogRepository {
-    private final Map<Integer, InputLine> store = new ConcurrentHashMap();
+    private final ConcurrentHashMap<Integer, InputLine> store = new ConcurrentHashMap();
     private final AtomicInteger atomicInteger = new AtomicInteger(1);
 
     @Override
